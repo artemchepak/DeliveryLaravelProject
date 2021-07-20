@@ -5,7 +5,7 @@
 
     <title>address ::: user office ::: foodclub</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,700italic,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link href="css/default.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/css/default.css') }}" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -17,7 +17,7 @@
                 <div class="wrapper">
 
                     <div class="logo_box">
-                        <a href="index.html"><img src="img/logo.png" alt="foodclub" /></a>
+                        <a href="index.html"><img src="{{ asset('img/logo.png') }}" alt="foodclub" /></a>
                     </div>
 
                     <div class="lng_box">
@@ -72,7 +72,7 @@
                             </div>
                             <div class="navbox">
                                 <a href="#" class="midbox nftoggle">
-                                    <img src="imgc/user_ava_1_40.jpg" alt="" />
+                                    <img src="{{ asset('imgc/user_ava_1_40.jpg') }}" alt="" />
                                     <span class="warrd"></span>
                                 </a>
                                 <nav class="utnav">
@@ -126,7 +126,7 @@
                 <div class="uo_header">
                     <div class="wrapper cf">
                         <div class="wbox ava">
-                            <figure><img src="imgc/user_ava_1_140.jpg" alt="Helena Afrassiabi" /></figure>
+                            <figure><img src="{{ asset('imgc/user_ava_1_140.jpg') }}" alt="Helena Afrassiabi" /></figure>
                         </div>
                         <div class="main_info">
                             <h1>Helena Afrassiabi</h1>
@@ -155,72 +155,17 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="uo_body">
                     <div class="wrapper">
                         <div class="uofb cf">
                             <div class="l_col adrs">
-                                <h2>Add New Address</h2>
-
-                                <form action="" method="post">
-                                    @csrf
-                                    <div class="field">
-                                        <label>Name *</label>
-                                        <input type="text" name="name" id="name" value="" palceholder="" class="vl_empty" />
-                                    </div>
-                                    <div class="field">
-                                        <label>Your city *</label>
-                                        <select class="vl_empty" name="city" id="city">
-                                            <option class="plh"></option>
-                                            <option>City 1</option>
-                                            <option>City 2</option>
-                                        </select>
-                                    </div>
-                                    <div class="field">
-                                        <label>Your area *</label>
-                                        <select name="area" id="area">
-                                            <option class="plh"></option>
-                                            <option>Area 1</option>
-                                            <option>Area 2</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="field">
-                                        <label>Street</label>
-                                        <input type="text" name="street" id="street" value="" palceholder="" class="vl_empty" />
-                                    </div>
-                                    <div class="field">
-                                        <label>House # </label>
-                                        <input type="text" name="house" id="house" value="" palceholder="House Name / Number" />
-                                    </div>
-
-                                    <div class="field">
-                                        <label class="pos_top">Additional information</label>
-                                        <textarea name="info" id="info"></textarea>
-                                    </div>
-
-                                    <div class="field">
-                                        <input type="submit" value="add address" class="green_btn" />
-                                    </div>
-                                </form>
+                                <h2>@yield('form-title')</h2>
+                                @yield('form')
                             </div>
 
                             <div class="r_col">
-                                <h2>My Addresses</h2>
-
-                                <div class="uo_adr_list">
-
-                                    @foreach($data as $item)
-                                        <div class="item">
-                                            <h3>{{$item->name}}</h3>
-                                            <p>{{$item->city}}, {{$item->area}}, {{$item->street}}, {{$item->house}}, {{$item->info}}</p>
-                                            <div class="actbox">
-                                                <a href="{{route('address-delete', $item->id)}}" class="bcross"></a>
-                                            </div>
-                                        </div>
-                                    @endforeach
-
-                                </div>
+                                <h2>@yield('content-title')</h2>
+                                @yield('main_content')
                             </div>
                         </div>
                     </div>
@@ -293,6 +238,9 @@
         </div>
     </footer>
 </div>
+
+@yield('map_script')
+
 </body>
 
 </html>
